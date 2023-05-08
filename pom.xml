@@ -4,10 +4,14 @@
 
   <groupId>org.javastudent</groupId>
   <artifactId>microservices-project-demo</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>microservices-project-demo</name>
   <url>http://maven.apache.org</url>
+
+  <modules>
+    <module>customer</module>
+  </modules>
 
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
