@@ -1,0 +1,29 @@
+services:
+
+  postgres:
+    image: "postgres:15.2"
+    container_name: "postgres-rds"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres-network
+
+  pgadmin:
+    image: "dpage/pgadmin4"
+    container_name: "pgadmin"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+    ports:
+      - "5050:80"
+    networks:
+      - postgres-network
+
+
+
+networks:
+  postgres-network:
+    driver: bridge
