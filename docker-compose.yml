@@ -4,10 +4,12 @@ services:
     image: "postgres:15.2"
     container_name: "postgres-rds"
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: admin
       POSTGRES_PASSWORD: secret
     ports:
       - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - postgres-network
 
@@ -15,14 +17,22 @@ services:
     image: "dpage/pgadmin4"
     container_name: "pgadmin"
     environment:
-      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_EMAIL: admin@java.dev
       PGADMIN_DEFAULT_PASSWORD: secret
     ports:
       - "5050:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     networks:
       - postgres-network
 
-
+volumes:
+  postgres-data:
+    external: true
+    name: postgres-data
+  pgadmin-data:
+    external: true
+    name: pgadmin-data
 
 networks:
   postgres-network:
